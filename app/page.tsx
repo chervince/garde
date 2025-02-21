@@ -1,8 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  // Ajoutez ce hook pour appliquer le style de défilement fluide
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,7 +42,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1582133604336-2f99daa7afcf?auto=format&fit=crop&q=80')"
+            backgroundImage: "url('/images/background_image-1.jpg')"
           }}
         />
         <div className="relative z-20 h-full flex flex-col items-center justify-center text-white px-4">
@@ -94,7 +102,7 @@ export default function Home() {
       <section className="py-16 px-4 bg-gray-50" id="reservation">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Nos Tarifs</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <h3 className="text-xl font-semibold mb-4">7 jours</h3>
               <p className="text-4xl font-bold mb-4">8 500 F</p>
@@ -116,6 +124,17 @@ export default function Home() {
                 <li className="mb-2">✓ Tarif préférentiel</li>
               </ul>
             </div>
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <h3 className="text-xl font-semibold mb-4">21 jours</h3>
+              <p className="text-4xl font-bold mb-4">20 000 F</p>
+              <p className="text-gray-600 mb-4">Forfait trois semaines</p>
+              <ul className="text-left mb-8">
+                <li className="mb-2">✓ Parking sécurisé</li>
+                <li className="mb-2">✓ Prise en charge clé en main</li>
+                <li className="mb-2">✓ Service navette inclus</li>
+                <li className="mb-2">✓ Tarif préférentiel</li>
+              </ul>
+            </div>
           </div>
           <p className="text-center mt-8 text-gray-600">
             Contactez-nous pour des durées personnalisées et tarifs dégressifs
@@ -126,10 +145,10 @@ export default function Home() {
       {/* Contact Section */}
       <section className="py-16 px-4 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-12">Contact</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-16">
           <div>
-            <h3 className="text-xl font-semibold mb-4">Formulaire de Contact</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <h3 className="text-xl font-semibold mb-8">Formulaire de Contact</h3>
+            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-lg">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom</label>
                 <input
@@ -211,8 +230,8 @@ export default function Home() {
             </form>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-4">Notre Emplacement</h3>
-            <div className="bg-gray-100 p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-8">Notre Emplacement</h3>
+            <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
               <div className="text-4xl mb-4">📍</div>
               <p className="text-lg mb-4">Situé à seulement 5 minutes de l&apos;aéroport de La Tontouta</p>
               <div className="space-y-2">
