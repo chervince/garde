@@ -259,15 +259,17 @@ export default function Home() {
                   Ouvert 7j/7, 24h/24
                 </p>
               </div>
-              <LoadScript googleMapsApiKey="AIzaSyCJv25_0Rv0KourViXujciNJ7bnJUP8nNY">
-                <GoogleMap
-                  mapContainerStyle={mapContainerStyle}
-                  center={center}
-                  zoom={15}
-                >
-                  <Marker position={center} />
-                </GoogleMap>
-              </LoadScript>
+              {process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+                <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+                  <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    center={center}
+                    zoom={15}
+                  >
+                    <Marker position={center} />
+                  </GoogleMap>
+                </LoadScript>
+              )}
             </div>
           </div>
         </div>
