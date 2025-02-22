@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 export default function Home() {
   // Ajoutez ce hook pour appliquer le style de défilement fluide
@@ -32,6 +33,16 @@ export default function Home() {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const mapContainerStyle = {
+    width: '100%',
+    height: '400px'
+  };
+
+  const center = {
+    lat: -22.0146,
+    lng: 166.2126
   };
 
   return (
@@ -144,12 +155,12 @@ export default function Home() {
 
       {/* Contact Section */}
       <section className="py-16 px-4 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">Contact</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Réservation</h2>
         <div className="grid md:grid-cols-2 gap-16">
           <div>
-            <h3 className="text-xl font-semibold mb-8">Formulaire de Contact</h3>
+            <h3 className="text-xl font-semibold text-center mb-8">Formulaire de Réservation</h3>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-lg">
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom</label>
                 <input
                   type="text"
@@ -161,7 +172,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                 <input
                   type="email"
@@ -173,7 +184,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Téléphone</label>
                 <input
                   type="tel"
@@ -185,7 +196,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Date de début</label>
                 <input
                   type="date"
@@ -197,7 +208,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">Date de fin</label>
                 <input
                   type="date"
@@ -209,7 +220,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div>
+              <div className="outline outline-2 outline-gray-400 hover:outline-blue-500 focus:outline-green-500 rounded px-3 py-2">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
                 <textarea
                   id="message"
@@ -229,9 +240,9 @@ export default function Home() {
               </button>
             </form>
           </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-8">Notre Emplacement</h3>
-            <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
+          <div className="flex items-center">
+            <div className="bg-gray-100 p-8 rounded-lg shadow-lg w-full h-full">
+              <h3 className="text-xl font-semibold mb-8">Notre Emplacement</h3>
               <div className="text-4xl mb-4">📍</div>
               <p className="text-lg mb-4">Situé à seulement 5 minutes de l&apos;aéroport de La Tontouta</p>
               <div className="space-y-2">
@@ -248,6 +259,15 @@ export default function Home() {
                   Ouvert 7j/7, 24h/24
                 </p>
               </div>
+              <LoadScript googleMapsApiKey="AIzaSyCJv25_0Rv0KourViXujciNJ7bnJUP8nNY">
+                <GoogleMap
+                  mapContainerStyle={mapContainerStyle}
+                  center={center}
+                  zoom={15}
+                >
+                  <Marker position={center} />
+                </GoogleMap>
+              </LoadScript>
             </div>
           </div>
         </div>
